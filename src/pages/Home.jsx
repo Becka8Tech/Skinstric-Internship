@@ -44,7 +44,7 @@ const Home = () => {
               strokeDasharray="4,4"
             />
           </svg>
-          <Link to="/" className="btn_1920">
+          <Link to="/Intro" className="btn_1920">
             <div className="discover">Take Test</div>
             <img src={icon} className="rotated-image" alt="" />
           </Link>

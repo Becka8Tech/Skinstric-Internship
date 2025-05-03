@@ -1,7 +1,9 @@
-import React from "react-router-dom";
-import { Link } from "react-router-dom";
+import React from "react";
+import { Link, useLocation } from "react-router-dom";
 
 const Nav = () => {
+  const location = useLocation();
+
   return (
     <nav className="nav-bar">
       <div
@@ -14,13 +16,15 @@ const Nav = () => {
         <Link to="/" className="btn_skinstric">
           Skinstric
         </Link>
-        <Link to="/" className="btn_intro">
+        <Link to="/Intro" className="btn_intro">
           [ Intro ]
         </Link>
       </div>
-      <div style={{ flex: "end" }}>
-        <button className="dark-button">Enter Code</button>
-      </div>
+      {location.pathname === "/" && (
+        <div style={{ flex: "end" }}>
+          <button className="dark-button">Enter Code</button>
+        </div>
+      )}
     </nav>
   );
 };
