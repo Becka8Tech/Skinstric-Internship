@@ -106,7 +106,7 @@ const Intro = () => {
           <div className="discover">Back</div>
         </Link>
         {successMessage && (
-          <Link to="/" className="proceed-button">
+          <Link to="/Scan" className="proceed-button">
             <div className="discover">Proceed</div>
             <img src={icon} className="rotated-image" alt="" />
           </Link>

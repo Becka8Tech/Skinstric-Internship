@@ -4,6 +4,7 @@ import "./index.css";
 import Home from "./pages/Home";
 import Nav from "./components/ui/Nav";
 import Intro from "./pages/Intro";
+import Scan from "./pages/Scan";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/Intro" element={<Intro />}></Route>
+          <Route path="/Scan" element={<Scan />}></Route>
         </Routes>
       </div>
     </Router>
