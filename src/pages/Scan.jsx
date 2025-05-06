@@ -40,7 +40,7 @@ const Scan = () => {
             <div className="title2">
               <img src={stylus} className="stylus2" alt="" style={{ transform: "rotate(180deg)" }} />
             </div>
-              <p className="stylus_title">Allow A.I. access Gallery</p>
+              <p className="stylus_title">Allow A.I. access to Gallery</p>
           </div>
         </div>
         <Link to="/Intro" className="back-button">

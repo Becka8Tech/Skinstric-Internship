@@ -59,11 +59,13 @@ const Intro = () => {
     <>
       <section>
         <div className="subhead_1920">To start analysis</div>
+
         <div className="rombuses">
           <div className="Rectangle_2780"></div>
           <div className="Rectangle_2779"></div>
           <div className="Rectangle_2778"></div>
-          <div className="captions_1920">click to type</div>
+
+          {!successMessage && <div className="captions_1920">click to type</div>}
 
           <div className="Intro_name">
             <input
@@ -73,7 +75,7 @@ const Intro = () => {
                   ? "Introduce Yourself"
                   : step === 2
                   ? "Where are you from?"
-                  : "Success!"
+                  : "Please, proceed."
               }
               value={step === 1 ? name : step === 2 ? location : ""}
               onChange={(e) =>
@@ -92,7 +94,7 @@ const Intro = () => {
                   marginTop: "12px",
                   color: "black",
                   fontWeight: "bold",
-                  fontSize: "14px",
+                  fontSize: "28px",
                   textTransform: "uppercase",
                 }}
               >
@@ -101,10 +103,12 @@ const Intro = () => {
             )}
           </div>
         </div>
+
         <Link to="/" className="back-button">
           <img src={icon} alt="" />
           <div className="discover">Back</div>
         </Link>
+
         {successMessage && (
           <Link to="/Scan" className="proceed-button">
             <div className="discover">Proceed</div>

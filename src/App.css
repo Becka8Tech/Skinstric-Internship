@@ -85,7 +85,7 @@ p {
   position: absolute;
   top: 23px;
   left: 117px;
-  width: 61px;
+  width: 82px;
   height: 17px;
   opacity: 0.6;
   font-weight: 600;
@@ -232,6 +232,7 @@ p {
   line-height: 24px;
   letter-spacing: -2%;
   text-transform: uppercase;
+  text-align: left;
 }
 .rombuses {
   position: relative;
@@ -252,7 +253,6 @@ p {
   border: 2px solid #a0a4ab;
   opacity: 0.3;
   transform: rotate(45deg);
-  box-sizing: border-box;
 }
 
 .Rectangle_2779 {
@@ -265,7 +265,6 @@ p {
   border: 2px solid #a0a4ab;
   opacity: 0.6;
   transform: rotate(45deg);
-  box-sizing: border-box;
 }
 
 .Rectangle_2778 {
@@ -278,7 +277,6 @@ p {
   border: 2px solid #a0a4ab;
   opacity: 1;
   transform: rotate(45deg);
-  box-sizing: border-box;
 }
 .captions_1920 {
   position: absolute;
@@ -360,6 +358,8 @@ text-transform: uppercase;
   top: 240px;
   left: 239px;
   position: absolute;
+  border: none;
+  background: transparent;
 }
 .Rectangle_2777 {
   position: absolute;
@@ -425,10 +425,9 @@ text-transform: uppercase;
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 66px;
-  height: 59px;
   border: none;
   background: transparent;
+  z-index: 1;
 }
 .camera-icon {
   position: absolute;
@@ -526,4 +525,136 @@ text-transform: uppercase;
   right: 0;
   width: 66px;
   height: 59px;
+}
+
+/* DemoStart Page */
+
+.ai-analysis {
+  position: absolute;
+  width: 227px;
+  height: 24px;
+  top: 86px;
+  left: 32px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #1A1B1C;
+}
+.ai-analysis2 {
+  position: absolute;
+  width: 336px;
+  height: 48px;
+  top: 118px;
+  left: 32px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: #1A1B1C;
+  margin: 0;
+}
+.ai-analysis,
+.ai-analysis2 {
+  text-align: left;
+}
+.diamond_container {
+  position: relative;
+  width: 762px;
+  height: 762px;
+  top: 99px;
+  left: 579px;
+  overflow: hidden;
+}
+.Rectangle_2746 {
+  position: absolute;
+  width: 538px;
+  height: 538px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  opacity: 0.3;
+  border: 2px solid #A0A4AB;
+}
+
+.Rectangle_2745 {
+  position: absolute;
+  width: 462px;
+  height: 462px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  opacity: 0.6;
+  border: 2px solid #A0A4AB;
+}
+
+.Rectangle_2744 {
+  position: absolute;
+  width: 386px;
+  height: 386px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  border: 2px solid #A0A4AB;
+}
+.group_diamond {
+  position: absolute;
+  width: 313.666px;
+  height: 313.671px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  border: 0.1px solid #FCFCFC;
+}
+
+.Rectangle_2876 {
+  position: absolute;
+  width: 153.876px;
+  height: 153.875px;
+  background-color: #E1E1E2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rectangle_label {
+  width: 142px;
+  height: 24px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: -0.02em;
+  text-align: center;
+  transform: rotate(45deg);
+  color: #1A1B1C;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.Rectangle_2876.top {
+  top: 0;
+  left: 50%;
+  text-decoration: none;
+}
+
+.Rectangle_2876.bottom {
+  bottom: 0;
+  left: 25%;
+  transform: translateX(-50%);
+  text-decoration: none;
+}
+
+.Rectangle_2876.left {
+  left: 0;
+  top: 25%;
+  transform: translateY(-50%);
+  text-decoration: none;
+}
+
+.Rectangle_2876.right {
+  right: 0;
+  top: 50%;
+  text-decoration: none;
 }

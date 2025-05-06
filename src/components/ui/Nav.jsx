@@ -16,9 +16,27 @@ const Nav = () => {
         <Link to="/" className="btn_skinstric">
           Skinstric
         </Link>
+      {location.pathname === "/" && (
         <Link to="/Intro" className="btn_intro">
           [ Intro ]
         </Link>
+      )}
+      {location.pathname === "/Intro" && (
+        <Link to="/Intro" className="btn_intro">
+          [ Intro ]
+        </Link>
+      )}
+      {location.pathname === "/Scan" && (
+        <Link to="/Intro" className="btn_intro">
+          [ Intro ]
+        </Link>
+      )}
+      {location.pathname === "/DemoStart" && (
+        <Link to="/" className="btn_intro">
+          [ Analysis ]
+        </Link>
+      )}
+    
       </div>
       {location.pathname === "/" && (
         <div style={{ flex: "end" }}>
