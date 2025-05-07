@@ -6,6 +6,8 @@ import Nav from "./components/ui/Nav";
 import Intro from "./pages/Intro";
 import Scan from "./pages/Scan";
 import DemoStart from "./pages/DemoStart";
+import Demographics from "./pages/Demographics";
+import Camera from "./pages/Camera";
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
           <Route path="/Intro" element={<Intro />}></Route>
           <Route path="/Scan" element={<Scan />}></Route>
           <Route path="/DemoStart" element={<DemoStart />}></Route>
+          <Route path="/Demographics" element={<Demographics />}></Route>
+          <Route path="/Camera" element={<Camera />}></Route>
         </Routes>
       </div>
     </Router>

@@ -32,7 +32,12 @@ const Nav = () => {
         </Link>
       )}
       {location.pathname === "/DemoStart" && (
-        <Link to="/" className="btn_intro">
+        <Link to="/DemoStart" className="btn_intro">
+          [ Analysis ]
+        </Link>
+      )}
+      {location.pathname === "/Demographics" && (
+        <Link to="/Demographics" className="btn_intro">
           [ Analysis ]
         </Link>
       )}
