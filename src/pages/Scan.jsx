@@ -1,5 +1,5 @@
-import React, { useRef } from "react";
-import { Link } from "react-router-dom";
+import React, { useRef, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import icon from "../assets/buttin-icon-shrunk.jpg";
 import camera from "../assets/camera.jpg";
 import gallery from "../assets/gallery-icon.jpg";
@@ -7,17 +7,31 @@ import stylus from "../assets/stylus.jpg";
 
 const Scan = () => {
   const fileInputRef = useRef(null);
+  const [showPopup, setShowPopup] = useState(false);
+  const navigate = useNavigate();
 
   const handleGalleryClick = () => {
-    fileInputRef.current.click(); // triggers file input
+    fileInputRef.current.click();
   };
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (file) {
       console.log("Selected file:", file);
-      // Optional: Upload it, preview it, or pass it to another component
     }
+  };
+
+  const handleCameraClick = () => {
+    setShowPopup(true);
+  };
+
+  const handleAllow = () => {
+    setShowPopup(false);
+    navigate("/Camera");
+  };
+
+  const handleDeny = () => {
+    setShowPopup(false);
   };
 
   return (
@@ -31,7 +45,6 @@ const Scan = () => {
           justifyItems: "space-between",
         }}
       >
-        {/* Camera Option */}
         <div className="camera">
           <div className="Rectangle_2777"></div>
           <div className="Rectangle_2776"></div>
@@ -40,18 +53,16 @@ const Scan = () => {
             <p className="stylus">Allow A.I. to Scan Your Face</p>
             <img src={stylus} className="stylus1" alt="" />
           </div>
-          <Link to="/Camera" className="camera-icon">
+          <div className="camera-icon" onClick={handleCameraClick} style={{ cursor: "pointer" }}>
             <img src={camera} alt="Camera Icon" />
-          </Link>
+          </div>
         </div>
 
-        {/* Gallery Option */}
         <div className="gallery">
           <div className="Rectangle_2774"></div>
           <div className="Rectangle_2773"></div>
           <div className="Rectangle_2772"></div>
 
-          {/* Trigger file input on click */}
           <div className="gallery-icon" onClick={handleGalleryClick} style={{ cursor: "pointer" }}>
             <img src={gallery} alt="Gallery Icon" />
           </div>
@@ -74,6 +85,18 @@ const Scan = () => {
         <img src={icon} alt="Back Icon" />
         <div className="discover">Back</div>
       </Link>
+
+      {showPopup && (
+        <div className="popup-overlay">
+          <div className="popup-box">
+            <p>Allow A.I. to access your camera</p>
+            <div className="popup-buttons">
+              <button onClick={handleDeny}>Deny</button>
+              <button onClick={handleAllow}>Allow</button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

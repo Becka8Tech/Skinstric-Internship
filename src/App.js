@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; // ✅ correct
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import "./index.css";
 import Home from "./pages/Home";
@@ -8,9 +8,11 @@ import Scan from "./pages/Scan";
 import DemoStart from "./pages/DemoStart";
 import Demographics from "./pages/Demographics";
 import Camera from "./pages/Camera";
+import { ResultProvider } from "./context/ResultContext";
 
 function App() {
   return (
+    <ResultProvider>
     <Router>
       <div className="App">
         <Nav />
@@ -24,6 +26,7 @@ function App() {
         </Routes>
       </div>
     </Router>
+    </ResultProvider>
   );
 }
 
