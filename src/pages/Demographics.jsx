@@ -75,30 +75,23 @@ const Demographics = () => {
           <div className="highlighted_race">{topRace.label}</div>
           <div className="text_percent">{topRace.confidence} %</div>
 
-          {/* Static values (optional — can be updated to reflect top probabilities) */}
-          <img src={diamond} className="diamond1" alt="" />
-          <div className="regular_race1">White</div>
-          <div className="text_percent1">6 %</div>
-
-          <img src={diamond} className="diamond2" alt="" />
-          <div className="regular_race2">Black</div>
-          <div className="text_percent2">3 %</div>
-
-          <img src={diamond} className="diamond3" alt="" />
-          <div className="regular_race3">South Asian</div>
-          <div className="text_percent3">2 %</div>
-
-          <img src={diamond} className="diamond4" alt="" />
-          <div className="regular_race4">Latino Hispanic</div>
-          <div className="text_percent4">0 %</div>
-
-          <img src={diamond} className="diamond5" alt="" />
-          <div className="regular_race5">South East Asian</div>
-          <div className="text_percent5">0 %</div>
-
-          <img src={diamond} className="diamond6" alt="" />
-          <div className="regular_race6">Middle Eastern</div>
-          <div className="text_percent6">0 %</div>
+          {/* ✅ Sorted race predictions, excluding the top one */}
+          {resultData?.data?.race &&
+            Object.entries(resultData.data.race)
+              .filter(([label]) => capitalize(label) !== topRace.label)
+              .sort((a, b) => b[1] - a[1])
+              .slice(0, 6)
+              .map(([label, confidence], index) => (
+                <div key={label}>
+                  <img src={diamond} className={`diamond${index + 1}`} alt="" />
+                  <div className={`regular_race${index + 1}`}>
+                    {capitalize(label)}
+                  </div>
+                  <div className={`text_percent${index + 1}`}>
+                    {Math.round(confidence * 100)} %
+                  </div>
+                </div>
+              ))}
 
           <Link to="/DemoStart" className="back-button">
             <img src={icon} alt="" />
