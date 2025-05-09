@@ -104,7 +104,7 @@ const Camera = () => {
                 <div className="Rectangle_2745 spinning"></div>
                 <div className="Rectangle_2744 spinning"></div>
                 <img src={camera} alt="Camera Icon" />
-                <div className="loading-message2">Setting up camera ...</div>
+                <div className="loading-message2">Setting up camera...</div>
               </div>
             </div>
             <p className="loading-hint">

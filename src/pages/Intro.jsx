@@ -45,7 +45,12 @@ const Intro = () => {
             throw new Error("Failed to submit data");
           }
 
-          setSuccessMessage(`Added ${data.name} from ${data.location}`);
+          const successLog = {
+            SUCCESS: `Added ${data.name} from ${data.location}`,
+          };
+
+          console.log(JSON.stringify(successLog));
+          setSuccessMessage(successLog.SUCCESS);
           setStep(3);
         } catch (error) {
           console.error("Error:", error);
