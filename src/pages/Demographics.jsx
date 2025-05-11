@@ -17,11 +17,18 @@ const Demographics = () => {
   const [actualAge, setActualAge] = useState(null);
   const [actualGender, setActualGender] = useState(null);
 
-  useEffect(() => {
+  const resetState = () => {
+    setActualRace(null);
+    setActualAge(null);
+    setActualGender(null);
     setShowRaceDetails(true);
     setShowAgeDetails(false);
     setShowGenderDetails(false);
     setHasInteracted(false);
+  };
+
+  useEffect(() => {
+    resetState();
   }, []);
 
   const handleNextSection = () => {
@@ -71,7 +78,7 @@ const Demographics = () => {
   const topSex = getTopPrediction(resultData?.data?.gender);
 
   return (
-    <section>
+    <section className="demo-container">
       <p className="ai-analysis">A. I. Analysis</p>
       <p className="demographics-title">Demographics</p>
 
@@ -141,15 +148,7 @@ const Demographics = () => {
             <p className="race-label2">{actualRace || topRace.label}</p>
           </div>
           <svg className="progress-ring" width="384" height="384">
-            <circle
-              className="ring-bg"
-              r="190"
-              cx="192"
-              cy="192"
-              fill="transparent"
-              stroke="#c1c2c3"
-              strokeWidth="3"
-            />
+            <circle className="ring-bg" r="190" cx="192" cy="192" fill="transparent" stroke="#c1c2c3" strokeWidth="3" />
             <circle
               className="ring-fill"
               r="190"
@@ -161,9 +160,7 @@ const Demographics = () => {
               strokeLinecap="round"
               style={{
                 strokeDasharray: `${2 * Math.PI * 190}`,
-                strokeDashoffset: `${
-                  2 * Math.PI * 190 * ((100 - topRace.confidence) / 100)
-                }`,
+                strokeDashoffset: `${2 * Math.PI * 190 * ((100 - topRace.confidence) / 100)}`,
               }}
             />
           </svg>
@@ -328,7 +325,7 @@ const Demographics = () => {
         If A.I. estimate is wrong, select the correct one.
       </p>
 
-      <button className="reset-button" onClick={() => window.location.reload()}>
+      <button className="reset-button" onClick={resetState}>
         Reset
       </button>
 

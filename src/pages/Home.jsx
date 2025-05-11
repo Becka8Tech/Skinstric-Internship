@@ -14,14 +14,26 @@ const Home = () => {
             height="602"
             preserveAspectRatio="none"
           >
-            <polygon
-              points="602,0 0,301 602,602"
-              fill="none"
+            <line
+              x1="602"
+              y1="0"
+              x2="0"
+              y2="301"
+              stroke="black"
+              strokeWidth="2"
+              strokeDasharray="4,4"
+            />
+            <line
+              x1="0"
+              y1="301"
+              x2="602"
+              y2="602"
               stroke="black"
               strokeWidth="2"
               strokeDasharray="4,4"
             />
           </svg>
+
           <Link to="/" className="btn_1920">
             <img src={icon} alt="" />
             <div className="discover">Discover A.I.</div>
@@ -36,14 +48,26 @@ const Home = () => {
             height="602"
             preserveAspectRatio="none"
           >
-            <polygon
-              points="602,0 0,301 602,602"
-              fill="none"
+            <line
+              x1="602"
+              y1="0"
+              x2="0"
+              y2="301"
+              stroke="black"
+              strokeWidth="2"
+              strokeDasharray="4,4"
+            />
+            <line
+              x1="0"
+              y1="301"
+              x2="602"
+              y2="602"
               stroke="black"
               strokeWidth="2"
               strokeDasharray="4,4"
             />
           </svg>
+
           <Link to="/Intro" className="btn_1920">
             <div className="discover">Take Test</div>
             <img src={icon} className="rotated-image" alt="" />

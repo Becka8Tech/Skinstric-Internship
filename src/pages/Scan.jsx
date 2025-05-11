@@ -79,11 +79,6 @@ const Scan = () => {
 
       <div
         className="scaners"
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyItems: "space-between",
-        }}
       >
         {/* Camera Option */}
         <div className="camera">
@@ -136,6 +131,7 @@ const Scan = () => {
         </div>
       </div>
 
+      {/* Error message */}
       {error && <p className="error-message" style={{ color: "red" }}>{error}</p>}
 
       <Link to="/Intro" className="back-button">

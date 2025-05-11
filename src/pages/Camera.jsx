@@ -21,7 +21,9 @@ const Camera = () => {
 
     const getCameraStream = async () => {
       try {
-        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+        const stream = await navigator.mediaDevices.getUserMedia({
+          video: true,
+        });
         if (videoRef.current) {
           videoRef.current.srcObject = stream;
           videoRef.current.onloadedmetadata = () => {
@@ -47,11 +49,14 @@ const Camera = () => {
     const payload = { image: base64Image };
 
     try {
-      const response = await fetch("https://us-central1-api-skinstric-ai.cloudfunctions.net/skinstricPhaseTwo", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
+      const response = await fetch(
+        "https://us-central1-api-skinstric-ai.cloudfunctions.net/skinstricPhaseTwo",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        }
+      );
 
       if (!response.ok) {
         const errorText = await response.text();
@@ -129,9 +134,10 @@ const Camera = () => {
             {isCaptured && (
               <>
                 <div className="captured-preview">
-                  <h3 className="great_shot">Great Shot!</h3>
                   <img src={capturedImage} alt="Captured" />
                 </div>
+
+                <h2 className="great_shot">Great Shot!</h2>
 
                 <Link to="/Scan" className="back-button">
                   <img src={icon} alt="" />
@@ -148,10 +154,9 @@ const Camera = () => {
                 </Link>
               </>
             )}
-
             {!isCaptured && (
               <>
-                <p className="hint1">To get better results make sure to have</p>
+                <div className="hint1">To get better results make sure to have</div>
                 <img src={hint} className="hint2" alt="" />
               </>
             )}

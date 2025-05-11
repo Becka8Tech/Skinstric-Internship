@@ -80,7 +80,7 @@ const Intro = () => {
                   ? "Introduce Yourself"
                   : step === 2
                   ? "Where are you from?"
-                  : "Please, proceed."
+                  : "Please Proceed"
               }
               value={step === 1 ? name : step === 2 ? location : ""}
               onChange={(e) =>
@@ -99,7 +99,7 @@ const Intro = () => {
                   marginTop: "12px",
                   color: "black",
                   fontWeight: "bold",
-                  fontSize: "28px",
+                  fontSize: "14px",
                   textTransform: "uppercase",
                 }}
               >
