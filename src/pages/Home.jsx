@@ -34,7 +34,7 @@ const Home = () => {
             />
           </svg>
 
-          <Link to="/" className="btn_1920">
+          <Link to="/Intro" className="btn_1920">
             <img src={icon} alt="" />
             <div className="discover">Discover A.I.</div>
           </Link>
