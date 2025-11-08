@@ -19,30 +19,36 @@ const Camera = () => {
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 3000);
 
-    const getCameraStream = async () => {
+    // Capture the ref's current value ONCE for this effect
+    const video = videoRef.current;
+    let stream;
+
+    async function getCameraStream() {
       try {
-        const stream = await navigator.mediaDevices.getUserMedia({
-          video: true,
-        });
-        if (videoRef.current) {
-          videoRef.current.srcObject = stream;
-          videoRef.current.onloadedmetadata = () => {
-            setIsStreamReady(true);
-          };
+        stream = await navigator.mediaDevices.getUserMedia({ video: true });
+        if (video) {
+          video.srcObject = stream;
+          video.onloadedmetadata = () => setIsStreamReady(true);
         }
       } catch (error) {
         console.error("Camera access denied:", error);
       }
-    };
+    }
 
     getCameraStream();
 
     return () => {
       clearTimeout(timer);
-      const stream = videoRef.current?.srcObject;
-      stream?.getTracks().forEach((track) => track.stop());
+      // Use the captured `video`, not `videoRef.current`
+      if (stream) {
+        stream.getTracks().forEach((track) => track.stop());
+      }
+      if (video) {
+        video.onloadedmetadata = null;
+        video.srcObject = null;
+      }
     };
-  }, []);
+  }, []); // deps are fine because we captured `video` and `stream` inside the effect
 
   const sendImageToAPI = async (imageDataURL) => {
     const base64Image = imageDataURL.replace(/^data:image\/png;base64,/, "");
@@ -81,6 +87,7 @@ const Camera = () => {
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
     context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
     const imageDataURL = canvas.toDataURL("image/png");
     setCapturedImage(imageDataURL);
     setIsCaptured(true);
@@ -156,7 +163,9 @@ const Camera = () => {
             )}
             {!isCaptured && (
               <>
-                <div className="hint1">To get better results make sure to have</div>
+                <div className="hint1">
+                  To get better results make sure to have
+                </div>
                 <img src={hint} className="hint2" alt="" />
               </>
             )}
