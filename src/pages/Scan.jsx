@@ -24,7 +24,10 @@ const Scan = () => {
     const reader = new FileReader();
 
     reader.onloadend = async () => {
-      const base64Image = reader.result.replace(/^data:image\/[a-z]+;base64,/, "");
+      const base64Image = reader.result.replace(
+        /^data:image\/[a-z]+;base64,/,
+        ""
+      );
       const payload = { image: base64Image };
 
       try {
@@ -60,57 +63,53 @@ const Scan = () => {
     reader.readAsDataURL(file);
   };
 
-  const handleCameraClick = () => {
-    setShowPopup(true);
-  };
-
+  const handleCameraClick = () => setShowPopup(true);
   const handleAllow = () => {
     setShowPopup(false);
     navigate("/Camera");
   };
-
-  const handleDeny = () => {
-    setShowPopup(false);
-  };
+  const handleDeny = () => setShowPopup(false);
 
   return (
     <section>
       <div className="subhead_1920">To start analysis</div>
 
-      <div
-        className="scaners"
-      >
-        {/* Camera Option */}
-        <div className="camera">
-          <div className="Rectangle_2777"></div>
-          <div className="Rectangle_2776"></div>
-          <div className="Rectangle_2775"></div>
-          <div className="title">
+      {/* FLEX CONTAINER */}
+      <div className="scaners">
+        {/* Camera panel */}
+        <div className="panel camera">
+          <div className="ring ring-outer" />
+          <div className="ring ring-mid" />
+          <div className="ring ring-inner" />
+
+          <div className="panel-title1">
             <p className="stylus">Allow A.I. to Scan Your Face</p>
-            <img src={stylus} className="stylus1" alt="" />
+            <img src={stylus} className="stylus-mark stylus-left" alt="" />
           </div>
-          <div
-            className="camera-icon"
+
+          <button
+            className="panel-icon"
             onClick={handleCameraClick}
-            style={{ cursor: "pointer" }}
+            aria-label="Open Camera"
           >
-            <img src={camera} alt="Camera Icon" />
-          </div>
+            <img src={camera} alt="" />
+          </button>
         </div>
 
-        {/* Gallery Option */}
-        <div className="gallery">
-          <div className="Rectangle_2774"></div>
-          <div className="Rectangle_2773"></div>
-          <div className="Rectangle_2772"></div>
+        {/* Gallery panel */}
+        <div className="panel gallery">
+          <div className="ring ring-outer" />
+          <div className="ring ring-mid" />
+          <div className="ring ring-inner" />
 
-          <div
-            className="gallery-icon"
+          <button
+            className="panel-icon"
             onClick={handleGalleryClick}
-            style={{ cursor: "pointer" }}
+            aria-label="Open Gallery"
           >
-            <img src={gallery} alt="Gallery Icon" />
-          </div>
+            <img src={gallery} alt="" />
+          </button>
+
           <input
             type="file"
             accept="image/*"
@@ -119,20 +118,18 @@ const Scan = () => {
             onChange={handleFileChange}
           />
 
-          <div className="title2">
-            <img
-              src={stylus}
-              className="stylus2"
-              alt=""
-              style={{ transform: "rotate(180deg)" }}
-            />
+          <div className="panel-title">
+            <img src={stylus} className="stylus-mark stylus-right" alt="" />
+            <p className="stylus_title">Allow A.I. access to Gallery</p>
           </div>
-          <p className="stylus_title">Allow A.I. access to Gallery</p>
         </div>
       </div>
 
-      {/* Error message */}
-      {error && <p className="error-message" style={{ color: "red" }}>{error}</p>}
+      {error && (
+        <p className="error-message" style={{ color: "red" }}>
+          {error}
+        </p>
+      )}
 
       <Link to="/Intro" className="back-button">
         <img src={icon} alt="Back Icon" />
