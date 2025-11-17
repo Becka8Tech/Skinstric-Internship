@@ -107,7 +107,9 @@ const Camera = () => {
         className="video-preview"
         style={{ display: loading || !isStreamReady ? "none" : "block" }}
       />
-      <section style={{ background: isCaptured ? "white" : "transparent" }}>
+      <section className="camera-page">
+
+
         {loading || !isStreamReady ? (
           <div>
             <div className="diamond_container2">

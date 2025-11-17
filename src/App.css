@@ -131,6 +131,7 @@ p {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   padding: 5px;
 }
 
@@ -209,17 +210,17 @@ p {
 }
 
 .company-title {
-  width: 680px;
-  height: 240px;
-  margin: 210px auto 0;
-  padding: 0 400px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: static;
+  top: auto;
+  left: auto;
+  transform: none;
+  flex: 1 1 auto;
+  margin: 0 2rem;
+  padding: 0 1rem;
   color: #1a1b1c;
   font-weight: 300;
-  font-size: 128px;
-  line-height: 120px;
+  font-size: clamp(2.5rem, 8vw, 128px);
+  line-height: 1;
   letter-spacing: -0.07em;
   text-align: center;
 }
@@ -368,14 +369,11 @@ p {
   color: #1a1b1c;
   text-transform: uppercase;
   font-size: 0.875rem;
+  z-index: 1000;
 }
 
-.back-button {
-  left: 1.5rem;
-}
-.proceed-button {
-  right: 1.5rem;
-}
+.back-button { left: 1.5rem; }
+.proceed-button { right: 1.5rem; }
 
 .back-button img,
 .proceed-button img {
@@ -391,11 +389,12 @@ p {
 .scaners {
   position: relative;
   display: flex;
-  align-items: flex-start;
   justify-content: center;
+  align-items: center;
   gap: 150px;
-  margin-top: 120px;
-  margin-left: -60px;
+  margin: 120px auto 0;
+  max-width: 1200px;
+  width: 100%;
 }
 
 .panel {
@@ -1247,8 +1246,8 @@ p {
   position: relative;
   width: 762px;
   height: 762px;
-  top: 99px;
-  left: 579px;
+  max-width: 90vw;
+  max-height: 90vh;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -1275,28 +1274,32 @@ p {
   color: #1a1b1c;
   background: transparent;
 }
-.loading-hint {
+.loading-hint,
+.loading-hint2 {
   position: absolute;
-  bottom: 24px;
-  width: 297px;
-  height: 24px;
-  top: 726px;
-  left: 812px;
+  left: 50%;
+  transform: translateX(-50%);
   text-align: center;
+  text-transform: uppercase;
+}
+
+.loading-hint {
+  bottom: 60px;
+  width: 80%;
+  max-width: 500px;
   font-weight: 400;
   font-size: 14px;
   line-height: 24px;
   letter-spacing: 0;
-  text-transform: uppercase;
   color: #1a1b1c;
   margin: 0;
 }
+
 .loading-hint2 {
-  position: absolute;
-  top: 766px;
-  left: 688px;
-  width: 491.94px;
-  height: 24px;
+  bottom: 30px;
+  width: 80%;
+  max-width: 500px;
+  height: auto;
   object-fit: contain;
   z-index: 2;
 }
@@ -1341,6 +1344,16 @@ p {
   height: 100vh;
   object-fit: cover;
   z-index: -1;
+}
+
+.camera-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: transparent;
 }
 
 .camera-feed {
@@ -1436,10 +1449,10 @@ canvas {
   top: 254px;
   left: 50%;
   transform: translateX(-50%);
-  width: 86px;
+  width: 1000px;
   height: 24px;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 42px;
   line-height: 24px;
   letter-spacing: 0;
   text-align: center;
@@ -1458,22 +1471,13 @@ canvas {
   .company-title {
     font-size: 2rem;
     padding: 0 2rem;
-  }
-  .btn_1920 {
-    flex-direction: column;
-    font-size: 0.9rem;
+    /* no top/left/transform here */
   }
 }
 
 @media (max-width: 480px) {
   .company-title {
     font-size: 1.5rem;
-  }
-  .discover {
-    font-size: 0.85rem;
-  }
-  .caption_1920 {
-    font-size: 0.85rem;
   }
 }
 
@@ -1522,6 +1526,62 @@ canvas {
     margin-left: 0;
   }
 }
+/* Between 1600px and up */
+@media (max-width: 1600px) {
+  .scaners {
+    gap: 120px;
+    max-width: 1100px;
+  }
+
+  .panel {
+    width: 480px;
+    height: 450px;
+  }
+
+  .ring-outer {
+    width: 440px;
+    height: 440px;
+  }
+
+  .ring-mid {
+    width: 405px;
+    height: 405px;
+  }
+
+  .ring-inner {
+    width: 370px;
+    height: 370px;
+  }
+}
+
+/* Between 1400px and 1600px */
+@media (max-width: 1400px) {
+  .scaners {
+    gap: 80px;
+    max-width: 1000px;
+  }
+
+  .panel {
+    width: 440px;
+    height: 410px;
+  }
+
+  .ring-outer {
+    width: 400px;
+    height: 400px;
+  }
+
+  .ring-mid {
+    width: 365px;
+    height: 365px;
+  }
+
+  .ring-inner {
+    width: 330px;
+    height: 330px;
+  }
+}
+
 
 /* Mobile Adjustments for Camera Page */
 @media (max-width: 600px) {
@@ -1536,11 +1596,13 @@ canvas {
     width: 20px;
     height: 16px;
   }
-  .hint1 {
+  .hint1,
+  .loading-hint {
     font-size: 12px;
     bottom: 50px;
   }
-  .hint2 {
+  .hint2,
+  .loading-hint2 {
     bottom: 20px;
     max-width: 90%;
   }

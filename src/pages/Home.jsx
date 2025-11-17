@@ -12,7 +12,9 @@ const Home = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const prefersReduced = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
 
       if (!prefersReduced) {
         gsap.fromTo(
@@ -29,56 +31,68 @@ const Home = () => {
             autoAlpha: 1,
             duration: 0.8,
             ease: "power3.out",
-            onComplete: () => gsap.set(".caption_1920", { clearProps: "transform" }),
+            onComplete: () =>
+              gsap.set(".caption_1920", { clearProps: "transform" }),
           }
         );
       } else {
-        gsap.set([".company-title", ".caption_1920"], { opacity: 1, clearProps: "transform" });
+        gsap.set([".company-title", ".caption_1920"], {
+          opacity: 1,
+          clearProps: "transform",
+        });
       }
 
-      gsap.utils.toArray(".reveal-left,.reveal-right,.reveal-up,.reveal-scale").forEach((el) => {
-        if (el.classList.contains("caption_1920")) return;
+      gsap.utils
+        .toArray(".reveal-left,.reveal-right,.reveal-up,.reveal-scale")
+        .forEach((el) => {
+          if (el.classList.contains("caption_1920")) return;
 
-        if (!prefersReduced) {
-          if (el.classList.contains("reveal-up")) gsap.set(el, { opacity: 0, y: 24 });
-          if (el.classList.contains("reveal-left")) gsap.set(el, { opacity: 0, x: -24 });
-          if (el.classList.contains("reveal-right")) gsap.set(el, { opacity: 0, x: 24 });
-          if (el.classList.contains("reveal-scale")) gsap.set(el, { opacity: 0, scale: 0.96 });
+          if (!prefersReduced) {
+            if (el.classList.contains("reveal-up"))
+              gsap.set(el, { opacity: 0, y: 24 });
+            if (el.classList.contains("reveal-left"))
+              gsap.set(el, { opacity: 0, x: -24 });
+            if (el.classList.contains("reveal-right"))
+              gsap.set(el, { opacity: 0, x: 24 });
+            if (el.classList.contains("reveal-scale"))
+              gsap.set(el, { opacity: 0, scale: 0.96 });
 
-          gsap.to(el, {
-            opacity: 1,
-            x: 0,
-            y: 0,
-            scale: 1,
-            duration: 0.9,
-            ease: "power3.out",
-            scrollTrigger: { trigger: el, start: "top 80%", once: true },
-            onComplete: () => gsap.set(el, { clearProps: "transform" }),
-          });
-        } else {
-          gsap.set(el, { opacity: 1, clearProps: "transform" });
-        }
-      });
+            gsap.to(el, {
+              opacity: 1,
+              x: 0,
+              y: 0,
+              scale: 1,
+              duration: 0.9,
+              ease: "power3.out",
+              scrollTrigger: { trigger: el, start: "top 80%", once: true },
+              onComplete: () => gsap.set(el, { clearProps: "transform" }),
+            });
+          } else {
+            gsap.set(el, { opacity: 1, clearProps: "transform" });
+          }
+        });
 
-      document.querySelectorAll(".triangle-overlay line, .triangle-overlays line").forEach((line) => {
-        const len = line.getTotalLength();
-        line.style.strokeDasharray = `${len}`;
-        line.style.strokeDashoffset = `${len}`;
-        if (!prefersReduced) {
-          gsap.to(line, {
-            strokeDashoffset: 0,
-            duration: 1.2,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: line.closest(".triangle-wrapper") ?? line,
-              start: "top 85%",
-              once: true,
-            },
-          });
-        } else {
-          gsap.set(line, { strokeDashoffset: 0 });
-        }
-      });
+      document
+        .querySelectorAll(".triangle-overlay line, .triangle-overlays line")
+        .forEach((line) => {
+          const len = line.getTotalLength();
+          line.style.strokeDasharray = `${len}`;
+          line.style.strokeDashoffset = `${len}`;
+          if (!prefersReduced) {
+            gsap.to(line, {
+              strokeDashoffset: 0,
+              duration: 1.2,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: line.closest(".triangle-wrapper") ?? line,
+                start: "top 85%",
+                once: true,
+              },
+            });
+          } else {
+            gsap.set(line, { strokeDashoffset: 0 });
+          }
+        });
     }, root);
 
     return () => ctx.revert();
@@ -88,9 +102,29 @@ const Home = () => {
     <section id="home" ref={root}>
       {/* LEFT TRIANGLE + CTA */}
       <div className="triangle-wrapper reveal-left">
-        <svg className="triangle-overlays" viewBox="0 0 602 602" width="602" height="602" preserveAspectRatio="none">
-          <line x1="602" y1="0" x2="0" y2="301" stroke="black" strokeWidth="2" />
-          <line x1="0" y1="301" x2="602" y2="602" stroke="black" strokeWidth="2" />
+        <svg
+          className="triangle-overlays"
+          viewBox="0 0 602 602"
+          width="602"
+          height="602"
+          preserveAspectRatio="none"
+        >
+          <line
+            x1="602"
+            y1="0"
+            x2="0"
+            y2="301"
+            stroke="black"
+            strokeWidth="2"
+          />
+          <line
+            x1="0"
+            y1="301"
+            x2="602"
+            y2="602"
+            stroke="black"
+            strokeWidth="2"
+          />
         </svg>
         <Link to="/Intro" className="btn_1920">
           <img src={icon} alt="" />
@@ -99,13 +133,37 @@ const Home = () => {
       </div>
 
       {/* CENTER TITLE */}
-      <div className="company-title reveal-scale">Sophisticated skincare</div>
+      <div className="company-title">
+        Sophisticated
+        <br />
+        skincare
+      </div>
 
       {/* RIGHT TRIANGLE + CTA */}
       <div className="triangle-wrapper reveal-right">
-        <svg className="triangle-overlay" viewBox="0 0 602 602" width="602" height="602" preserveAspectRatio="none">
-          <line x1="602" y1="0" x2="0" y2="301" stroke="black" strokeWidth="2" />
-          <line x1="0" y1="301" x2="602" y2="602" stroke="black" strokeWidth="2" />
+        <svg
+          className="triangle-overlay"
+          viewBox="0 0 602 602"
+          width="602"
+          height="602"
+          preserveAspectRatio="none"
+        >
+          <line
+            x1="602"
+            y1="0"
+            x2="0"
+            y2="301"
+            stroke="black"
+            strokeWidth="2"
+          />
+          <line
+            x1="0"
+            y1="301"
+            x2="602"
+            y2="602"
+            stroke="black"
+            strokeWidth="2"
+          />
         </svg>
         <Link to="/Intro" className="btn_1920">
           <div className="discover">Take the Test</div>
@@ -117,7 +175,8 @@ const Home = () => {
       <div className="caption_1920" aria-label="Skinstric caption">
         <p>
           Skinstric developed an A.I. that creates a<br />
-          highly-personalized routine tailored to<br />
+          highly-personalized routine tailored to
+          <br />
           what your skin needs.
         </p>
       </div>
